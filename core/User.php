@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2017 Sebastian Schwaner
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,20 +17,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-# basic stuff to run all other things
-if( file_exists("../core/init.php") ) { include "../core/init.php"; }
-elseif( file_exists("./core/init.php") ) { include "./core/init.php"; }
-else die("Corrupt Installation!");
 
-# now the OOP becomes the mastermind
-$ENV = new Env();
-$MYSQL = new MySQL();
-
-# sets the session
-$ENV->setSession();
-
-# opens the MySQL connection
-$MYSQL->openMysqlConnection(); 
-
-# gets the current user
-
+class User extends FPObjects {
+    
+    # returns true if user with session is logged in, otherwise false
+    public function isLoggedIn() {
+        global $ENV;
+        return $this->getByKey("hash", $ENV->getSession() );
+    }
+    
+}

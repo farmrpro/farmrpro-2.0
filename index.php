@@ -17,20 +17,3 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-# basic stuff to run all other things
-if( file_exists("../core/init.php") ) { include "../core/init.php"; }
-elseif( file_exists("./core/init.php") ) { include "./core/init.php"; }
-else die("Corrupt Installation!");
-
-# now the OOP becomes the mastermind
-$ENV = new Env();
-$MYSQL = new MySQL();
-
-# sets the session
-$ENV->setSession();
-
-# opens the MySQL connection
-$MYSQL->openMysqlConnection(); 
-
-# gets the current user
-
