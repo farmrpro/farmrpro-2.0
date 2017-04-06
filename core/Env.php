@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2016 Sebastian Schwaner
+ * Copyright (C) 2017 Sebastian Schwaner
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,10 +24,18 @@ class Env {
     private  $localHost = "127.0.0.1";
     private  $hostName = "";
     private  $session;
+    private  $langpack = "DE";
     
     public function getAppName() { return $this->appName; }
     public function getAppVersion() { return $this->appVersion; }
     public function getSession() { return $this->session; }
+    public function getLoginLink() { return $this->getURL()."backoffice/login.php"; }
+    public function getBackOfficeLink() { return $this->getURL()."backoffice/index.php"; }
+    public function getLangPack() { return $this->langpack; }
+    
+    public function getScriptName() {
+        return basename( filter_input( INPUT_SERVER,"SCRIPT_NAME") ); 
+    }
     
     public function getPath() {
         if( file_exists("./core/Env.php") ) { return "./"; }
@@ -36,23 +44,11 @@ class Env {
     }
     
     public function getURL() { 
-        return "http://".$this->localHost."/".$this->appName."/";
+        return "http://".$this->localHost."/farmrpro-2.0/";
     }
     
-    public function getBackendJavaPath() {
-        return self::getURL()."backend/content/js/"; 
-    }
-    
-    public function getJavaPath() {
-        return self::getURL()."content/js/";
-    }
-    
-    public function getBackendCSSPath() {
-        return self::getURL()."backend/content/css/";
-    }
-    
-    public function getCSSPath() {
-        return self::getURL()."content/css/";
+    public function getBackOfficeCSSPath() {
+        return self::getURL()."backoffice/css/";
     }
     
     public function getQueryString() {
@@ -72,6 +68,9 @@ class Env {
     }
     
     # Setter Functions =========================================================
-    public function setSession() { $this->session = session_start(); }
+    public function setSession() { 
+        session_start();
+        $this->session = session_id(); 
+    }
     
 }

@@ -26,4 +26,16 @@ class User extends FPObjects {
         return $this->getByKey("hash", $ENV->getSession() );
     }
     
+    # get user by its email and pass
+    public function getUserByLoginData( $email,$pass ) {
+        if( empty( $email) || empty( $pass) ) { return; }
+        $tb = $this->getTable();
+        $query =    "SELECT * FROM `$tb` WHERE email='$email' AND "
+                    . "pass=PASSWORD('$pass')";
+        $res = $this->getMySQLHandle()->query( $query );
+        if( empty( $res->num_rows ) ) { return; }
+        else { return $res->fetch_object( $this->getClass() );  }
+        return; 
+    }
+    
 }

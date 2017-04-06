@@ -30,7 +30,7 @@ spl_autoload_register(function ($class_name) {
 # error logger
 function logErr( $err ) {
     if( file_exists("./logs/errors.log") ) { $file = "./logs/errors.log"; }
-    if( file_exists("../logs/errors.log") ) { $file = "..logs/errors.log"; }
+    if( file_exists("../logs/errors.log") ) { $file = "../logs/errors.log"; }
     
     $logmsg = date("Y-m-d G:i",time())."\t".$err;
     
@@ -40,5 +40,27 @@ function logErr( $err ) {
     fclose($fhandle);
     
     return 0;
+}
+
+# INITIALIZE THE SOFTWARE ======================================================
+
+global $ENV, $MYSQL, $USER, $LANG;
+
+# now the OOP becomes the mastermind
+$ENV = new Env();
+$ENV->setSession();
+
+# setting up MySQL
+$MYSQL = new MySQL();
+$MYSQL->openMysqlConnection(); 
+
+# SETTING UP LANGUAGE
+$LANG = new Language("DE");
+
+# CREATE/CHECK USER
+# only if not in login mode (avoiding loops)
+if( $ENV->getScriptName() != "login.php" ) {
+    $USER = (new User())->getByKey("hash", $ENV->getSession() );
+    if( empty( $USER ) ) { header("Location: ".$ENV->getLoginLink() ); }
 }
 

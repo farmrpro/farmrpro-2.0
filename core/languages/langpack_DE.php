@@ -17,8 +17,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-# basic stuff to run all other things
-if( file_exists("../core/init.php") ) { include "../core/init.php"; }
-elseif( file_exists("./core/init.php") ) { include "./core/init.php"; }
-else die("Corrupt Installation!");
+$langpack = array(
+    
+    "1" => "Probleme mit Ihrem Passwort? Lassen Sie sich Ihr Passwort "
+            . "<a href=\"\">zurücksetzen</a>.",
+    "2" => "Login fehlgeschlagen: Kombination aus Nutzer/Passwort konnte nicht gefunden werden."
+
+);
 

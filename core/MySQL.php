@@ -18,13 +18,11 @@
  */
 
 class MySQL {
-    
-    private $env;
+   
+    private $handle;
     
     # public constructor
     public function __construct() {
-        global $ENV;
-        $this->env = $ENV;
         $this->readMysqlConfig();
     }
     
@@ -37,9 +35,10 @@ class MySQL {
     
     # get the mysql config from config.php
     private function readMysqlConfig() {
-       if( file_exists( $this->env->getPath()."config.php" ) ) {
+        global $ENV;
+       if( file_exists( $ENV->getPath()."config.php" ) ) {
            # include config file
-           require_once $this->env->getPath()."config.php";
+           require_once $ENV->getPath()."config.php";
        }
        else { return logErr("Couldn't load 'config.php': File not found!"); }
     }

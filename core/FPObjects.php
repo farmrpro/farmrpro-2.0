@@ -37,8 +37,10 @@ class FPObjects {
     
     # get the table name 
     public function isLoaded() { if( isset( $this->id ) ) { return true;} }
-    public function getTableName() { return $this->table; }
+    public function getTable() { return $this->table; }
     public function getValue( $key ) { if( isset( $this->$key ) ) { return $this->$key; } }
+    public function getMySQLHandle() { return $this->handle; }
+    public function getClass() { return $this->class; }
     
     # set a value for a key
     public function setValue( $key,$value ) {
@@ -93,21 +95,7 @@ class FPObjects {
     }
     
     # PRIVATE METHODS ==========================================================
-    
-    private function getEmptyInsertQuery() {
-        $ar = $ar2 = array();
-        $fcount = $this->getTableFieldsCounter();
-        $fields = $this->getTableFields();
-        if( $fcount > 0 && is_array( $fields ) ) {
-            for($i=0;$i<$fcount;$i++) { array_push($ar,"''"); }
-            foreach( $fields as $f ) { array_push( $ar2,"`$f`");} 
-            $str = implode(",",$ar);
-            $str2 = implode(",",$ar2);
-            return "INSERT INTO `$this->table` ( $str2 ) VALUES ( $str )";
-        } 
-        return;
-    }
-    
+   
     private function getTableFields() {
         $ar = array();
         if( $res = $this->handle->query("DESCRIBE `$this->table`") ) { 
