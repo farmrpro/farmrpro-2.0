@@ -36,27 +36,9 @@ else die("Corrupt Installation!");
                     
                     <div class="login-container" id="login-container">
                     
-                        <h2>Login</h2>
-                        
-                        <?php if( filter_input(INPUT_GET,"errmsg") == "true" ) : ?>
-                        <p class="error"><?php echo __loginError__; ?></p>
-                        <?php endif; ?>
-
-                        <form method="post" action="exec.php">
-                        <input type="hidden" name="scope" value="UserExec"/>
-                        <input type="hidden" name="call" value="userLogin"/>
-
-                        <p><input type="text" class="w100" placeholder="E-Mail" 
-                        name="email" tabindex="1"/></p>
-
-                        <p><input type="password" class="w100" placeholder="Passwort"
-                        name="pass" tabindex="2" required/></p>
-                        
-                        <p><?php echo __forgottenPass__; ?></p>
-
-                        <p><button type="submit" class="w100">Login</button></p>
-                        
-                        </form>
+                        <script type="text/javascript">
+                            action.showDialog('<?php echo filter_input( INPUT_GET,"type"); ?>');
+                        </script>
                         
                     </div>
                     

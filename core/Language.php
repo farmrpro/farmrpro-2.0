@@ -23,20 +23,11 @@ class Language {
     
     # sets the language pack
     public function __construct( $lang ) {
-        $this->selectedLanguage = $lang;
-    }
-    
-    # gets the message by ID from loaded language pack and returns it
-    public function getMessage( $id ) {
         global $ENV;
+        $this->selectedLanguage = $lang;
+        # load constant lang pack
         if( file_exists($ENV->getPath()."core/languages/langpack_$this->selectedLanguage.php") ) {
-            include $ENV->getPath()."core/languages/langpack_$this->selectedLanguage.php";
-            if( isset( $langpack[$id] ) ) { return $langpack[$id]; }
-            else return;
+            include_once $ENV->getPath()."core/languages/langpack_$this->selectedLanguage.php";
         }
-        else {
-            logErr("Language error: Couldn't find language pack '$this->selectedLanguage'!");
-            return;
-        }
-    } 
+    }
 }

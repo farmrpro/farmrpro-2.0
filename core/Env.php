@@ -32,6 +32,13 @@ class Env {
     public function getLoginLink() { return $this->getURL()."backoffice/login.php"; }
     public function getBackOfficeLink() { return $this->getURL()."backoffice/index.php"; }
     public function getLangPack() { return $this->langpack; }
+    public function getResetPassLink() { return $this->getURL()."backoffice/resetpassword.php"; }
+    public function getPerformHash() { return filter_input( INPUT_GET,"perform"); }
+    
+    public function getDialogLink( $type ) {
+        if( empty( $type ) ) $type = "empty";        
+        return $this->getURL()."backoffice/dialog.php?type=$type";
+    }
     
     public function getScriptName() {
         return basename( filter_input( INPUT_SERVER,"SCRIPT_NAME") ); 
@@ -45,6 +52,10 @@ class Env {
     
     public function getURL() { 
         return "http://".$this->localHost."/farmrpro-2.0/";
+    }
+    
+    public function getBackOfficeJSPath() {
+        return self::getURL()."backoffice/js/";
     }
     
     public function getBackOfficeCSSPath() {

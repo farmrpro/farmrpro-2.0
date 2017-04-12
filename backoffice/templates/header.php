@@ -26,7 +26,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         
         <link rel="shortcut icon" type="image/x-icon" href="" />
         
-        <title><?php echo $ENV->getAppName(); ?> &raquo; Login</title>
+        <script type="text/javascript" 
+        src="<?php echo $ENV->getBackOfficeJSPath(); ?>action.js?v=<?php echo time(); ?>"></script>
+        
+        <script type="text/javascript" 
+        src="<?php echo $ENV->getBackOfficeJSPath(); ?>ajax.js?v=<?php echo time(); ?>"></script>
+        
+        <title><?php echo $ENV->getAppName(); ?></title>
     </head>
     
     <body>

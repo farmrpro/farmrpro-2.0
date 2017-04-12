@@ -22,14 +22,7 @@ if( file_exists("../core/init.php") ) { include "../core/init.php"; }
 elseif( file_exists("./core/init.php") ) { include "./core/init.php"; }
 else die("Corrupt Installation!");
 
-# now the OOP becomes the mastermind
-$ENV = new Env();
-$ENV->setSession();
-$MYSQL = new MySQL();
-$MYSQL->openMysqlConnection();
-$USER = new User();
-
-# get the environment
+# get some environment stuff
 $str = $ENV->getQueryString();
 $class = $ENV->getScope();
 $call = $ENV->getCall();

@@ -1,5 +1,3 @@
-<?php
-
 /* 
  * Copyright (C) 2017 Sebastian Schwaner
  *
@@ -17,11 +15,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-# basic stuff to run all other things
-if( file_exists("../core/init.php") ) { include "../core/init.php"; }
-elseif( file_exists("./core/init.php") ) { include "./core/init.php"; }
-else die("Corrupt Installation!");
+var action = {
+    
+    // Properties
+    loginContainer: "login-container",
+    url: "exec.php",
+   
+    // Methods
+    showDialog: function( type ) {
+        var param = 'scope=Dialog&call=showDialog&type='+type;
+        ajax.post( this.url,this.loginContainer,param);
+    },
+    
+    setResetPass: function() {
+        var param = 'scope=UserExec&call=requestPasswordReset&email='+ajax.getInput('email');
+        ajax.post( this.url,this.loginContainer,param );
+    },
+    
+    showResetPass: function() {
+        var param = 'scope=UserExec&call=showResetPass';
+        ajax.post( this.url,this.loginContainer,param );
+    },
+    
+};
 
-# Login needed?
-$USER->checkLogin();
 

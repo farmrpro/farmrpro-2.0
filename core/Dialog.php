@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2017 Sebastian Schwaner
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,11 +17,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-# basic stuff to run all other things
-if( file_exists("../core/init.php") ) { include "../core/init.php"; }
-elseif( file_exists("./core/init.php") ) { include "./core/init.php"; }
-else die("Corrupt Installation!");
-
-# Login needed?
-$USER->checkLogin();
-
+class Dialog {
+    
+    # show the requested dialog 
+    public function showDialog() {
+        $type = filter_input( INPUT_POST,"type");
+        ?>
+        <?php if( $type == "resetPasswordDone") : ?>
+            <h2><?php echo __resetPassDoneTopic__; ?></h2>
+            <p><?php echo __resetPassDoneContent__; ?></p>
+        
+        <?php else : ?>
+            <h2><?php echo __emptyTopic__; ?></h2>
+            <p><?php echo __emptyContent__; ?></p>
+            
+        <?php endif; ?>
+            <button onclick="location.replace('index.php');">
+                <?php echo __backToIndex__; ?>
+            </button>
+        <?php
+    }
+    
+}

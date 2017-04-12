@@ -17,11 +17,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$langpack = array(
-    
-    "1" => "Probleme mit Ihrem Passwort? Lassen Sie sich Ihr Passwort "
-            . "<a href=\"\">zurücksetzen</a>.",
-    "2" => "Login fehlgeschlagen: Kombination aus Nutzer/Passwort konnte nicht gefunden werden."
+# TEXTGROUP NEW PASSWORD =======================================================
 
-);
+# TEXTGROUP RESETPASSWORT ======================================================
+define("__forgottenPass__","Probleme mit Ihrem Passwort? <a href=\"javascript:void();\" onclick=\"action.showResetPass();\">Resetten Sie Ihr Passwort.</a>");
+define("__resetPassTopic__","Passwort zurücksetzen");
+define("__resetPassContent__","Um Ihr Passwort zurücksetzen zu lassen, tragen Sie Ihre verwendete E-Mailadresse ein. Sie erhalten dann einen Link an Ihr E-Mailpostfach, um das Passwort zurückzusetzen.");
+define("__resetPassError__","Keine oder ungültige E-Mailadresse angegeben!");
+define("__resetPassButton__","Passwort zurücksetzen");
+define("__resetPassSuccessTopic__","Passwort zurücksetzen");
+define("__resetPassSuccessContent__","Bitte kontrollieren Sie Ihren E-Mailposteingang und verwenden Sie den enthaltenen Link, um Ihr Passwort zurückzusetzen.");
+define("__resetPassDoneTopic__","Passwurde wurde zurückgesetzt");
+define("__resetPassDoneContent__","Ihr Passwort wurde zurückgesetzt. Ihr neues Passwort haben Sie an Ihre E-Mailadresse geschickt bekommen. Sie können sich damit nun wieder einloggen. Vergessen Sie nicht, Ihr Passwort in den Einstellungen zu ändern.");
 
+# TEXTGROUP LOGIN ==============================================================
+define("__loginError__","Login fehlgeschlagen: Kombination aus Nutzer/Passwort konnte nicht gefunden werden.");
+
+# TEXTGROUP DIALOG =============================================================
+define("__emptyTopic__","Fehler");
+define("__emptyContent__","Dieser Fehler wird Ihnen angezeigt, da kein gültiger Dialog seitens des Systems ausgewählt wurde.");
+define("__backToIndex__","Zurück zur Startseite");

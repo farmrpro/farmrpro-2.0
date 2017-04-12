@@ -24,7 +24,7 @@
                 <strong><?php echo $ENV->getAppName(); ?></strong>
             </span>
             
-            <?php if( $USER ) : ?>
+            <?php if( $USER->isLoggedIn() ) : ?>
             
             <span class="menu-item right">
                 <a href="exec.php?scope=UserExec&call=userlogout">Ausloggen</a>

@@ -58,9 +58,5 @@ $MYSQL->openMysqlConnection();
 $LANG = new Language("DE");
 
 # CREATE/CHECK USER
-# only if not in login mode (avoiding loops)
-if( $ENV->getScriptName() != "login.php" ) {
-    $USER = (new User())->getByKey("hash", $ENV->getSession() );
-    if( empty( $USER ) ) { header("Location: ".$ENV->getLoginLink() ); }
-}
+$USER = new User();
 
